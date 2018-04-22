@@ -1,6 +1,8 @@
 package banco;
 import java.util.Scanner;
 import cuenta.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import utilidadesbanco.*;
 
 public class Banco {
@@ -33,16 +35,19 @@ public class Banco {
 
             }else if(opcion==2){
                 
-                String entidad, oficina, cliente;
-
-                System.out.println("Introduzca los datos: ");
-                System.out.println("Entidad: ");
-                entidad = sc.nextLine();
-                System.out.println("Oficina: ");
-                oficina = sc.nextLine();
-                System.out.println("Cliente: ");
-                cliente = sc.nextLine();
-                System.out.println("Su CCC: " + utilidadesbanco.UtilidadesBanco.calcular_CCC(entidad, oficina, cliente));
+                try {
+                    String entidad, oficina, cliente;
+                    System.out.println("Introduzca los datos: ");
+                    System.out.println("Entidad: ");
+                    entidad = sc.nextLine();
+                    System.out.println("Oficina: ");
+                    oficina = sc.nextLine();
+                    System.out.println("Cliente: ");
+                    cliente = sc.nextLine();
+                    System.out.println("Su CCC: " + utilidadesbanco.UtilidadesBanco.calcular_CCC(entidad, oficina, cliente));
+                } catch (CCCException ex) {
+                    Logger.getLogger(Banco.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
             }else{
 
