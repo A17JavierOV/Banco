@@ -3,6 +3,7 @@ package utilidadesbanco;
 import java.math.BigInteger;
 
 public class UtilidadesBanco {
+    
     public static  void validarCCC(String ccc) throws CCCException {
         String entidad, oficina,  dc, cliente;
         if(ccc.length()!=20)
@@ -18,17 +19,20 @@ public class UtilidadesBanco {
             throw new CCCException(ccc,"error detectado por DC de CCC");
         
     }
+    
     public static String calcular_CCC(String entidad,  String oficina,  String cliente) throws CCCException{
         validarCCC(entidad+oficina+calcularDC_ccc(entidad,oficina,cliente)+ cliente);
         return entidad+oficina+calcularDC_ccc(entidad,oficina,cliente)+ cliente ;
         
     }
+    
     public static String calcularDC_ccc( String entidad,  String oficina,  String cliente){
         String primeraCifraDC,segundaCifraDC;
         primeraCifraDC=calcular1DC("00"+entidad+oficina);
         segundaCifraDC=calcular1DC(cliente);
         return primeraCifraDC+segundaCifraDC;
     }
+    
     private static String calcular1DC (String codigo){
         String dc="";
         
@@ -57,6 +61,7 @@ public class UtilidadesBanco {
         dc= String.valueOf(suma);
         return dc;
     }
+    
     public static void validarIBAN(String iban) throws IbanException, CCCException{
         //suponemos para simplificar iban españa que siempre son 4 + 20 dígitos
         if(iban.length()!=24)
@@ -66,11 +71,13 @@ public class UtilidadesBanco {
             throw new IbanException(iban,"erro detectado por dc iban");
         }
     }
+    
     public static String calcular_iban(String pais, String ccc) throws CCCException{
         validarCCC(ccc);
         return pais+calcularDC_iban(pais,ccc)+ccc;
         
     }
+    
     public static String calcularDC_iban(String pais, String ccc) throws CCCException{
         //suponemos que ccc es OK
         /* podemos comprobar  la tabla de letras de pais

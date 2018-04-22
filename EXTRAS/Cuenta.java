@@ -1,11 +1,12 @@
-package cuenta;
+
+
 
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Cuenta {
-    
+public class Cuenta{
+   
     String iban;
     Set<String> clientes;
     BigDecimal saldo;
@@ -39,4 +40,5 @@ public class Cuenta {
             throw new MovimientoException(iban,cantidad,"Saldo insuficiente.");        
         }
     }
+  
 }

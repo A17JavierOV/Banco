@@ -1,42 +1,52 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package banco;
+import java.util.Scanner;
+import cuenta.*;
+import utilidadesbanco.*;
 
-/**
- *
- * @author a17javierov
- */
 public class Banco {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        int opcion;
+        
         
         System.out.println("GESTION BANCO");
         System.out.println("[1]. Utilidades banco");
         System.out.println("[2]. Creación cuenta");
         System.out.println("[0]. Salir");
-        
+
         System.out.println("Seleccionar una opción: ");
-        
-        System.out.println("UTILIDADES BANCO");
-        System.out.println("[1]. Calcular CCC");
-        System.out.println("[2]. Calcular IBAN");
-        System.out.println("[0]. Salir");
-        
-        System.out.println("Seleccionar una opción: ");
-        
-        System.out.println("Introduzca los datos: ");
-        System.out.println("Entidad: ");
-        System.out.println("Oficina: ");
-        System.out.println("Cliente: ");
-        System.out.println("Su CCC: " + utilidadesbanco.UtilidadesBanco.calcular_CCC(entidad, oficina, cliente));
-        
-        
+        opcion = sc.nextInt();
+
+        while(opcion!=0){
+            
+            if(opcion==1){
+
+                System.out.println("UTILIDADES BANCO");
+                System.out.println("[1]. Calcular CCC");
+                System.out.println("[2]. Calcular IBAN");
+                System.out.println("[0]. Salir");
+
+                System.out.println("Seleccionar una opción: ");
+                opcion = sc.nextInt();
+
+            }else if(opcion==2){
+                
+                String entidad, oficina, cliente;
+
+                System.out.println("Introduzca los datos: ");
+                System.out.println("Entidad: ");
+                entidad = sc.nextLine();
+                System.out.println("Oficina: ");
+                oficina = sc.nextLine();
+                System.out.println("Cliente: ");
+                cliente = sc.nextLine();
+                System.out.println("Su CCC: " + utilidadesbanco.UtilidadesBanco.calcular_CCC(entidad, oficina, cliente));
+
+            }else{
+
+            }
+        }
     }
-    
 }

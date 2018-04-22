@@ -1,10 +1,7 @@
-package cuenta;
 
 import java.math.BigDecimal;
-
 public class MovimientoException extends  Exception{
-    
-     String  ccc;
+    String  ccc;
     BigDecimal cantidad;
     String mensaje;
     public MovimientoException(String ccc, BigDecimal cantidad, String mensaje){
