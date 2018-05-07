@@ -5,9 +5,9 @@ import java.math.BigInteger;
 public class UtilidadesBanco {
     
     public static  void validarCCC(String ccc) throws CCCException {
-        String entidad, oficina,  dc, cliente;
+        String entidad, oficina, dc, cliente;
         if(ccc.length()!=20)
-            throw new CCCException(ccc,"longitud de ccc incorrecta");
+            throw new CCCException(ccc,"Longitud de ccc incorrecta");
         entidad=ccc.substring(0, 4);
         oficina=ccc.substring(4, 8);
         dc=ccc.substring(8,10);
@@ -16,7 +16,7 @@ public class UtilidadesBanco {
         String dcCalculado;
         dcCalculado=calcularDC_ccc(entidad, oficina, cliente);
         if(!dc.equals(dcCalculado))
-            throw new CCCException(ccc,"error detectado por DC de CCC");
+            throw new CCCException(ccc,"Error detectado por DC de CCC");
         
     }
     
@@ -65,10 +65,10 @@ public class UtilidadesBanco {
     public static void validarIBAN(String iban) throws IbanException, CCCException{
         //suponemos para simplificar iban españa que siempre son 4 + 20 dígitos
         if(iban.length()!=24)
-            throw new IbanException(iban,"longitud de iban incorrecta");
+            throw new IbanException(iban,"Longitud de iban incorrecta.");
         String ibanCalculado=calcular_iban(iban.substring(0,2),iban.substring(4));
         if(!iban.equals(ibanCalculado)){
-            throw new IbanException(iban,"erro detectado por dc iban");
+            throw new IbanException(iban,"Error detectado por dc IBAN.");
         }
     }
     

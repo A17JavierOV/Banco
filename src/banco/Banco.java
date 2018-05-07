@@ -76,6 +76,7 @@ public class Banco {
                     System.out.println("DNI del titular: ");
                     dni = sc.next();
                     Cliente datosCliente = new Cliente(dni, nombre);
+                    
                     System.out.println("Entidad: ");
                     entidad = sc.next();
                     System.out.println("Oficina: ");
