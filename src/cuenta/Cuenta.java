@@ -24,13 +24,12 @@ public class Cuenta {
     }
     
     public Cuenta(String entidad, String oficina, String cliente, Set<Cliente> clientes) {
-        //this.iban = iban;
-        //this.clientes = clientes;
+
         String ccc, iban;
         
         try{
             ccc = utilidadesbanco.UtilidadesBanco.calcular_CCC(entidad, oficina, cliente);
-            iban = calcular_iban("España", ccc);
+            iban = calcular_iban("ES", ccc);
             this.iban = iban;
             this.clientes = clientes;
         }catch(CCCException cccex){
