@@ -3,7 +3,6 @@ package cuenta;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 import utilidadesbanco.CCCException;
 import static utilidadesbanco.UtilidadesBanco.calcular_iban;
 
@@ -12,8 +11,8 @@ import static utilidadesbanco.UtilidadesBanco.calcular_iban;
  *******************************************************************************/
 public class Cuenta {
 
-    String iban;
-    Set<Cliente> clientes;
+    String iban, ccc;
+    HashSet<Cliente> clientes;
     BigDecimal saldo;
 
     Cuenta(String iban){
@@ -23,7 +22,7 @@ public class Cuenta {
         this.saldo= new BigDecimal("0.00");
     }
     
-    public Cuenta(String entidad, String oficina, String cliente, Set<Cliente> clientes) {
+    public Cuenta(String entidad, String oficina, String cliente, Cliente datosCliente) {
 
         String ccc, iban;
         
@@ -31,12 +30,22 @@ public class Cuenta {
             ccc = utilidadesbanco.UtilidadesBanco.calcular_CCC(entidad, oficina, cliente);
             iban = calcular_iban("ES", ccc);
             this.iban = iban;
-            this.clientes = clientes;
+            this.ccc = ccc;
+            this.clientes = new HashSet<>();
+            clientes.add(datosCliente);
         }catch(CCCException cccex){
             System.out.println("Datos de cuenta no válidos.");
         }     
     }
+    
+    public String getIban() {
+        return iban;
+    }
 
+    public String getCcc() {
+        return ccc;
+    }
+    
     /***************************************************************************
      * @param cantidad
      * @throws Exception

@@ -82,26 +82,26 @@ public class Banco {
 
             }else if(opcion==2){
                 
-                try {
-                    String dni, nombre, entidad, oficina, cliente;
-                                        
-                    System.out.println("Introduzca los datos: ");
-                    System.out.println("Nombre del titular: ");
-                    nombre = sc.next();
-                    System.out.println("DNI del titular: ");
-                    dni = sc.next();
-                    Cliente datosCliente = new Cliente(dni, nombre);
-                    
-                    System.out.println("Entidad: ");
-                    entidad = sc.next();
-                    System.out.println("Oficina: ");
-                    oficina = sc.next();
-                    System.out.println("Número de cuenta cliente: ");
-                    cliente = sc.next();
-                    System.out.println("Su CCC: " + utilidadesbanco.UtilidadesBanco.calcular_CCC(entidad, oficina, cliente));
-                } catch (CCCException ex) {
-                    System.out.println("El valor que estás intentando introducir no es válido");
-                }
+                String dni, nombre, entidad, oficina, cliente;
+                System.out.println("Introduzca los datos: ");
+                System.out.println("Nombre del titular: ");
+                nombre = sc.next();
+                System.out.println("DNI del titular: ");
+                dni = sc.next();
+                Cliente datosCliente = new Cliente(dni, nombre);
+                
+                System.out.println("Entidad: ");
+                entidad = sc.next();
+                System.out.println("Oficina: ");
+                oficina = sc.next();
+                System.out.println("Número de cuenta cliente: ");
+                cliente = sc.next();
+                Cuenta cuenta = new Cuenta(entidad, oficina, cliente, datosCliente);
+                
+                System.out.println("Su CCC: " + cuenta.getCcc());
+                System.out.println("Su IBAN: " + cuenta.getIban());
+                System.out.println("Gracias por crear su cuenta en nuestro banco.");
+                
             }else{
                 System.out.println("Gracias por usar nuestros servicios.");
                 break;
