@@ -4,9 +4,14 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import utilidadesbanco.CCCException;
+import static utilidadesbanco.UtilidadesBanco.calcular_iban;
 
+/*******************************************************************************
+ * @author A17JavierOV
+ *******************************************************************************/
 public class Cuenta {
-    
+
     String iban;
     Set<Cliente> clientes;
     BigDecimal saldo;
@@ -17,7 +22,28 @@ public class Cuenta {
         clientes=new HashSet<>();
         this.saldo= new BigDecimal("0.00");
     }
+    
+    public Cuenta(String entidad, String oficina, String cliente, Set<Cliente> clientes) {
+        //this.iban = iban;
+        //this.clientes = clientes;
+        String ccc, iban;
+        
+        try{
+            ccc = utilidadesbanco.UtilidadesBanco.calcular_CCC(entidad, oficina, cliente);
+            iban = calcular_iban("España", ccc);
+            this.iban = iban;
+            this.clientes = clientes;
+        }catch(CCCException cccex){
+            System.out.println("Datos de cuenta no válidos.");
+        }     
+    }
 
+    /***************************************************************************
+     * @param cantidad
+     * @throws Exception
+     * 
+     * Ingresa una cantidad asociada a un objeto Cuenta
+     ***************************************************************************/
     public void ingresar (BigDecimal cantidad) throws Exception {
         if (cantidad.compareTo(BigDecimal.ZERO) >0) {
             saldo=saldo.add(cantidad);
@@ -27,6 +53,12 @@ public class Cuenta {
         }
     }
     
+    /***************************************************************************
+     * @param cantidad
+     * @throws Exception
+     * 
+     * Resta una cantidad del saldo que tenga la Cuenta.
+     ***************************************************************************/
     public void retirar (BigDecimal cantidad) throws Exception {
         if (cantidad.compareTo(BigDecimal.ZERO) >0) {
             throw new MovimientoException(iban,cantidad,"Cantidad de reintegro no v�lida.");        
@@ -56,10 +88,21 @@ public class Cuenta {
         return hash;
     }
     
+    /***************************************************************************
+     * @param dni
+     * 
+     * Agrega un objeto Cliente al hashSet de la Cuenta, por si hay varios
+     * titulares en la Cuenta establecida.
+     ***************************************************************************/
     public void agregarCliente(Cliente dni){
         clientes.add(dni);
     }
     
+    /***************************************************************************
+     * @param dni
+     * 
+     * Borra Clientes contenidos en el hashSet asociado a una Cuenta en concreto.
+     ***************************************************************************/
     public void borrarCliente(Cliente dni){
         clientes.remove(dni);
     }

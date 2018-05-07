@@ -1,12 +1,27 @@
 package banco;
+
 import java.util.Scanner;
 import cuenta.*;
 import utilidadesbanco.*;
 import static utilidadesbanco.UtilidadesBanco.validarCCC;
 import static utilidadesbanco.UtilidadesBanco.validarIBAN;
 
+/**
+ * @author A17JavierOV
+ */
+
 public class Banco {
 
+    /***************************************************************************
+     *
+     * @param args
+     * @throws CCCException
+     * 
+     * Clase principal, accede al menú del programa, nos permite comprobar si un
+     * CCC es correcto, si un IBAN es correcto, agregar objetos Cliente y agregar
+     * objetos Cuenta.
+     * 
+     **************************************************************************/
     public static void main(String[] args) throws CCCException {
         
         Scanner sc = new Scanner(System.in);
